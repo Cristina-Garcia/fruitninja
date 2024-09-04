@@ -21,7 +21,7 @@ const loadImages = () => {
   const fruitTypes = ['apple', 'banana', 'orange', 'ajo']
   fruitTypes.forEach((type) => {
     const img = new Image()
-    img.src = `images/${type}.png`
+    img.src = `./images/${type}.png`
     fruitImages.push(img)
   })
 }

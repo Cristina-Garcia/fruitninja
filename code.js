@@ -1,5 +1,6 @@
 const canvas = document.getElementById('gameCanvas')
 const ctx = canvas.getContext('2d')
+
 let fruits = []
 const fruitImages = []
 let fruitHalves = []
@@ -15,7 +16,6 @@ let totalImages = 4
 
 let canvasWidth = window.innerWidth - 50
 let canvasHeight = window.innerHeight
-canvas.style.border = '1px solid black'
 
 canvas.width = canvasWidth
 canvas.height = canvasHeight
@@ -39,7 +39,7 @@ const loadImages = () => {
   const fruitTypes = ['apple', 'banana', 'orange', 'ajo']
   fruitTypes.forEach((type) => {
     const img = new Image()
-    img.src = `images/${type}.png`
+    img.src = `./images/${type}.png`
     img.onload = () => {
       imagesLoaded++
       if (imagesLoaded === totalImages) {
@@ -164,7 +164,7 @@ const startTimer = () => {
       alert('¡Tiempo acabado! Fin del juego.')
       restartGame() // Llamar a la función para reiniciar el juego
     }
-  }, 1000) // Reducir el tiempo cada segundo
+  }, 1000)
 }
 
 // Crear frutas
@@ -222,7 +222,7 @@ const drawScore = () => {
 // Función que maneja el evento de cortar frutas
 function handleFruitAction(x, y) {
   fruits.forEach((fruit, index) => {
-    if (fruit.isHit(x, y)) {
+    if (fruit.isHit(x, y) == true) {
       if (fruit.image.src.includes('banana')) {
         score += 10
       } else if (fruit.image.src.includes('apple')) {
@@ -265,39 +265,6 @@ canvas.addEventListener('mouseover', (event) => {
 
   handleFruitAction(x, y)
 })
-
-// Evento de clic para cortar frutas
-// canvas.addEventListener('click', (event) => {
-//   const rect = canvas.getBoundingClientRect()
-//   const x = event.clientX - rect.left
-//   const y = event.clientY - rect.top
-
-//   fruits.forEach((fruit, index) => {
-//     if (fruit.isHit(x, y)) {
-//       if (fruit.image.src.includes('banana')) {
-//         score += 10
-//       } else if (fruit.image.src.includes('apple')) {
-//         score += 5
-//       } else if (fruit.image.src.includes('orange')) {
-//         score += 3
-//       } else if (fruit.image.src.includes('ajo')) {
-//         score -= 5
-
-//         // Mostramos de error
-//         ctx.drawImage(errorImage, x, y, 50, 50)
-
-//         const error = document.createElement('div')
-//         error.classname = 'error'
-
-//         setTimeout(() => {
-//           ctx.clearRect(0, 0, 50, 50)
-//         }, 5000)
-//       }
-//       fruits.splice(index, 1)
-//       createFruitHalves(fruit)
-//     }
-//   })
-// })
 
 // Reiniciar el juego
 const restartGame = () => {
