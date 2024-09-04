@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juego de Frutas</title>
+    <style>
+      #gameContainer {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        border: 1px solid black;
+        overflow: hidden;
+        background-image: url(./images/navidad.webp);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .fruit {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        transition: transform 0.2s;
+      }
+      .fruit:hover {
+        transform: scale(1.2);
+      }
+      .fruit.half {
+        width: 25px;
+        height: 50px;
+        animation: fall 2s forwards ease-in;
+      }
+      @keyframes fall {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          top: 100%;
+          transform: rotate(720deg);
+        }
+      }
+      #scoreBoard {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        color: white;
+      }
+      #timer {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 24px;
+        color: white;
+      }
+      #error {
+        position: absolute;
+        display: none;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="gameContainer">
+      <div id="scoreBoard">Puntos: 0</div>
+      <div id="timer">Tiempo: 200s</div>
+      <img id="error" src="./images/error.webp" alt="Error" />
+    </div>
+
+    <script src="whitoutcanvas.js"></script>
+  </body>
+</html>
